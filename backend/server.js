@@ -10,7 +10,7 @@ const upload = multer({ storage: multer.memoryStorage() });
 
 
 const corsOptions = {
-   origin: 'http://localhost:3000',
+   origin: '190.106.222.249',
    methods: ['GET', 'POST', 'PUT', 'DELETE'],
    credentials: true,
 };
@@ -23,11 +23,12 @@ app.use(cors(corsOptions));
 // Configurar la conexión a la base de datos PostgreSQL
 const pool = new Pool({
    user: 'postgres',
-   host: '34.44.41.39',
-   database: 'db-proyecto-final',
+   host: '/cloudsql/proyecto-final-is-cc:us-central1-c:5013179873609293030',
+   database: 'pj-db',
    password: 'horcus420',
    port: 5432,
 });
+
 
 // Ruta de login
 app.post('/api/login', async (req, res) => {
@@ -360,7 +361,7 @@ app.post('/api/upload', upload.single('image'), async (req, res) => {
    blobStream.on('finish', () => {
       // URL pública de la imagen subida
       const publicUrl = `https://storage.googleapis.com/${bucket.name}/${blob.name}`;
-         res.status(200).send({ message: 'Imagen subida exitosamente', url: publicUrl });
+      res.status(200).send({ message: 'Imagen subida exitosamente', url: publicUrl });
    });
 
    blobStream.end(req.file.buffer);
