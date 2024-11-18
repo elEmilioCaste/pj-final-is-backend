@@ -19,7 +19,7 @@ const generateIngId = () => {
 
 
 const corsOptions = {
-   origin: ['http://localhost:3000', '0.0.0.0'],
+   origin: ['http://localhost:3000', '0.0.0.0', 'http://proyecto-final-cloud-442104.uc.r.appspot.com'],
    methods: ['GET', 'POST', 'PUT', 'DELETE'],
    credentials: true,
 };
