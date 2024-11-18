@@ -17,17 +17,10 @@ const generateIngId = () => {
    return 'ING' + Math.random().toString(36).slice(2, 12);
 };
 
-
-const corsOptions = {
-   origin: ['http://localhost:3000', '0.0.0.0', 'http://proyecto-final-cloud-442104.uc.r.appspot.com'],
-   methods: ['GET', 'POST', 'PUT', 'DELETE'],
-   credentials: true,
-};
-
 const app = express();
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors(corsOptions));
+app.use(cors({ origin: 'http://proyecto-final-cloud-442104.uc.r.appspot.com/' }));
 
 // Configurar la conexión a la base de datos PostgreSQL
 const pool = new Pool({
@@ -622,6 +615,6 @@ app.delete('/api/recipe/:id', async (req, res) => {
 
 // Configurar el puerto y escuchar
 const port = 3001;
-app.listen(port, () => {
+app.listen(port, '0.0.0.0', () => {
    console.log(`Servidor corriendo en el puerto ${port}`);
 });
